@@ -21,7 +21,9 @@ public class Hand {
 			nextCardValue = hand.get(count).getValue();
 			if (compareValue-nextCardValue!=1){
 				//Check if ace is highest card
-				if (compareValue==Card.MAX_VALUE && (nextCardValue-(compareValue-highAceStraightOffset))!=HAND_SIZE-1){
+				if (compareValue==Card.MAX_VALUE && (nextCardValue-(compareValue-highAceStraightOffset))==HAND_SIZE-1){
+					
+				} else {
 					return false;
 				}
 				
@@ -66,9 +68,6 @@ public class Hand {
 				}
 			}
 		}
-		
-		System.out.print("\tSorted Hand: ");
-		printHand(hand);
 	}
 	
 	/**
@@ -90,6 +89,7 @@ public class Hand {
 				count++;
 			}
 		}
+		rank.setRank(count);
 		
 		return rank;
 	}

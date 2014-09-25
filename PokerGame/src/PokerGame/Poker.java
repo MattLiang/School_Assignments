@@ -141,30 +141,50 @@ public class Poker {
 		highCard.add(spade2);
 		highCard.add(diamond10);
 		highCard.add(diamond3);
-		highCard.add(club2);
+		highCard.add(club5);
 		
 		
 		Rank rank;
 		
 		Hand.printHand(royalFlushLow);
 		rank = Hand.getRank(royalFlushLow);
-		System.out.println("Rank: "+rank.getRank().toString()+", High: "+rank.getHighestValue());
+		System.out.println("\tRank: "+rank.getRank().toString()+", High: "+rank.getHighestValue());
 		
 		Hand.printHand(royalFlushHigh);
 		rank = Hand.getRank(royalFlushHigh);
-		System.out.println("Rank: "+rank.getRank().toString()+", High: "+rank.getHighestValue());
+		System.out.println("\tRank: "+rank.getRank().toString()+", High: "+rank.getHighestValue());
 		
 		Hand.printHand(flush);
+		rank = Hand.getRank(flush);
+		System.out.println("\tRank: "+rank.getRank().toString()+", High: "+rank.getHighestValue());
+		
 		Hand.printHand(straight);
+		rank = Hand.getRank(straight);
+		System.out.println("\tRank: "+rank.getRank().toString()+", High: "+rank.getHighestValue());
+		
 		Hand.printHand(fullHouse);
+		rank = Hand.getRank(fullHouse);
+		System.out.println("\tRank: "+rank.getRank().toString()+", High: "+rank.getHighestValue());
+		
 		Hand.printHand(twoPair);
+		rank = Hand.getRank(twoPair);
+		System.out.println("\tRank: "+rank.getRank().toString()+", High: "+rank.getHighestValue());
+		
 		Hand.printHand(pair);
+		rank = Hand.getRank(pair);
+		System.out.println("\tRank: "+rank.getRank().toString()+", High: "+rank.getHighestValue());
+		
 		Hand.printHand(threeOfAKind);
+		rank = Hand.getRank(threeOfAKind);
+		System.out.println("\tRank: "+rank.getRank().toString()+", High: "+rank.getHighestValue());
+		
 		Hand.printHand(fourOfAKind);
+		rank = Hand.getRank(fourOfAKind);
+		System.out.println("\tRank: "+rank.getRank().toString()+", High: "+rank.getHighestValue());
+		
 		Hand.printHand(highCard);
-		
-		
-		
+		rank = Hand.getRank(highCard);
+		System.out.println("\tRank: "+rank.getRank().toString()+", High: "+rank.getHighestValue());
 	}
 	
 	//how to handle ties of ranks
