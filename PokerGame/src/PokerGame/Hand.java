@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class Hand {
 	private static final int HIGHEST_CARD_INDEX = 0;
-	private static final int highAceStraightOffset = 13;	//Difference between high ace(14) and low ace(1)
 	public static final int HAND_SIZE = 5;
 	
 	/**
@@ -20,13 +19,7 @@ public class Hand {
 			//Assuming ace is high
 			nextCardValue = hand.get(count).getValue();
 			if (compareValue-nextCardValue!=1){
-				//Check if ace is highest card
-				if (compareValue==Card.MAX_VALUE && (nextCardValue-(compareValue-highAceStraightOffset))==HAND_SIZE-1){
-					
-				} else {
-					return false;
-				}
-				
+				return false;
 			}
 			compareValue = nextCardValue;
 		}
@@ -82,16 +75,39 @@ public class Hand {
 		
 		for (Card card : hand){
 			if (current_value != card.getValue()){
-				rank.setRank(count);
+				rank.setRank(count,current_value);
 				current_value = card.getValue();
 				count = 1;
 			} else {
 				count++;
 			}
 		}
-		rank.setRank(count);
+		rank.setRank(count,current_value);
 		
 		return rank;
+	}
+	
+	private static boolean isAceLowStraight(ArrayList<Card> hand){
+		ArrayList<Card> tempHand=new ArrayList<Card>(hand);
+		boolean straight;
+		
+		//Check for ace low straight
+		Card card = tempHand.get(HIGHEST_CARD_INDEX);
+		card.setValue(Card.MIN_VALUE);
+		tempHand.set(HIGHEST_CARD_INDEX, card);
+		sortHand(tempHand);
+		
+		straight=isStraight(tempHand);
+		if (straight) {
+			hand = tempHand;
+		} else {
+			//revert changes
+			card.setValue(Card.MAX_VALUE);
+			hand.set(HIGHEST_CARD_INDEX, card);
+			sortHand(hand);
+		}
+		
+		return straight;
 	}
 	
 	public static Rank getRank(ArrayList<Card> hand){
@@ -105,6 +121,14 @@ public class Hand {
 		boolean flush = false;
 		
 		straight = isStraight(hand);
+		
+		if (!straight && hand.get(HIGHEST_CARD_INDEX).getValue()==Card.MAX_VALUE){
+			straight = isAceLowStraight(hand);
+			if (straight) {
+				rank = new Rank(hand.get(HIGHEST_CARD_INDEX).getValue());
+			}
+		}
+
 		flush = isFlush(hand);
 		
 		//Royal Flush

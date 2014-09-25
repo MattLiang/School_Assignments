@@ -3,7 +3,7 @@ package PokerGame;
 public class Card {
 	public static enum Suit {heart,diamond,club,spade};
 	public static final int MAX_VALUE = 14; //14 is ace high
-	public static final int MIN_VALUE = 2;
+	public static final int MIN_VALUE = 1; //1 is low ace
 
 	private Suit suit;
 	private int value;

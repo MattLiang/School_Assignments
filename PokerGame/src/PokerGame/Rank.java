@@ -38,25 +38,24 @@ public class Rank {
 	
 	
 	//Rank is dependent on the detection of multiple
-	public void setRank(int multiple) {
+	public void setRank(int multiple, int value) {
 		switch(multiple){
 		case 2:
 			//2nd pair detected, record that value
 			if (rank == Ranks.pair){
 				rank = Ranks.twoPair;
-				secondaryValue = multiple;
+				secondaryValue = value;
 			} 
 			
 			//Full House detected, highest value now is that triple
 			else if (rank == Ranks.threeOfAKind) {
 				rank = Ranks.fullHouse;
-				secondaryValue = highestValue;
-				highestValue = multiple;
+				secondaryValue = value;
 				
 			//Single pair detected, record that value
 			} else if (rank == Ranks.highCard) {
 				rank = Ranks.pair;
-				highestValue = multiple;
+				highestValue = value;
 			}
 			break;
 			
@@ -64,19 +63,20 @@ public class Rank {
 			//Full house detected, record that pair as secondary value
 			if (rank == Ranks.pair){
 				rank = Ranks.fullHouse;
-				secondaryValue = multiple;
+				secondaryValue = highestValue;
+				highestValue = value;
 			} 
 			
 			//Triple detected, record that value
 			else if(rank == Ranks.highCard) {
 				rank = Ranks.threeOfAKind;
-				highestValue = multiple;
+				highestValue = value;
 			}
 			break;
 			
 		case 4:
 			rank = Ranks.fourOfAKind;
-			highestValue = multiple;
+			highestValue = value;
 			break;
 			
 		default:
