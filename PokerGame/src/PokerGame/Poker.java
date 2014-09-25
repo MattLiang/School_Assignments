@@ -74,10 +74,10 @@ public class Poker {
 		Card diamondA = new Card(Card.Suit.diamond,14);
 		
 		ArrayList<Card> royalFlushLow = new ArrayList<Card>();
-		royalFlushLow.add(heartA);
 		royalFlushLow.add(heart2);
-		royalFlushLow.add(heart3);
 		royalFlushLow.add(heart4);
+		royalFlushLow.add(heart3);
+		royalFlushLow.add(heartA);
 		royalFlushLow.add(heart5);
 		
 		ArrayList<Card> royalFlushHigh = new ArrayList<Card>();
@@ -144,10 +144,16 @@ public class Poker {
 		highCard.add(club2);
 		
 		
+		Rank rank;
+		
 		Hand.printHand(royalFlushLow);
-		System.out.println("Rank: "+Hand.getRank(royalFlushLow).toString());
-		System.out.println(Rank.Ranks.fourOfAKind.toString());
+		rank = Hand.getRank(royalFlushLow);
+		System.out.println("Rank: "+rank.getRank().toString()+", High: "+rank.getHighestValue());
+		
 		Hand.printHand(royalFlushHigh);
+		rank = Hand.getRank(royalFlushHigh);
+		System.out.println("Rank: "+rank.getRank().toString()+", High: "+rank.getHighestValue());
+		
 		Hand.printHand(flush);
 		Hand.printHand(straight);
 		Hand.printHand(fullHouse);

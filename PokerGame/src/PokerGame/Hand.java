@@ -13,21 +13,20 @@ public class Hand {
 	 */
 	private static boolean isStraight(ArrayList<Card> hand){
 		//Ace high straight
-		int highestValue = hand.get(HIGHEST_CARD_INDEX).getValue();
+		int compareValue = hand.get(HIGHEST_CARD_INDEX).getValue();
+		int nextCardValue;
 		
 		for (int count=1;count<HAND_SIZE;count++){
 			//Assuming ace is high
-			if (highestValue-count != hand.get(count).getValue()){
+			nextCardValue = hand.get(count).getValue();
+			if (compareValue-nextCardValue!=1){
 				//Check if ace is highest card
-				if (highestValue!=Card.MAX_VALUE){
+				if (compareValue==Card.MAX_VALUE && (nextCardValue-(compareValue-highAceStraightOffset))!=HAND_SIZE-1){
 					return false;
 				}
 				
-				//If ace is high hard, check if straight is ace low straight (14,5,4,3,2)
-				if (highestValue-highAceStraightOffset-HAND_SIZE-count != hand.get(count).getValue()){
-					return false;
-				}
 			}
+			compareValue = nextCardValue;
 		}
 		
 		return true;
@@ -58,12 +57,12 @@ public class Hand {
 		
 		//broken
 		Card temp;
-		for (int i=0; i<HAND_SIZE;i++){
-			for (int j=1;j<i;j++){
-				if (hand.get(j-1).getValue()<hand.get(j).getValue()){
+		for (int i=0; i<HAND_SIZE-1;i++){
+			for (int j=0;j<HAND_SIZE-i-1;j++){
+				if (hand.get(j).getValue()<hand.get(j+1).getValue()){
 					temp = hand.get(j);
-					hand.set(j, hand.get(j-1));
-					hand.set(j-1, temp);
+					hand.set(j, hand.get(j+1));
+					hand.set(j+1, temp);
 				}
 			}
 		}
@@ -100,11 +99,10 @@ public class Hand {
 			//error, hand size is invalid
 		}
 		
+		sortHand(hand);
 		Rank rank = new Rank(hand.get(HIGHEST_CARD_INDEX).getValue());
 		boolean straight = false;
 		boolean flush = false;
-		
-		sortHand(hand);
 		
 		straight = isStraight(hand);
 		flush = isFlush(hand);
