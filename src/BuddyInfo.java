@@ -1,13 +1,8 @@
 
 public class BuddyInfo {
 	private String name;
-	private int address;
+	private String address;
 	private String phoneNum;
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
 
 	public String getName() {
 		return name;
@@ -17,11 +12,11 @@ public class BuddyInfo {
 		this.name = name;
 	}
 
-	public int getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(int address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
@@ -31,6 +26,10 @@ public class BuddyInfo {
 
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
+	}
+	
+	public String toString(){
+		return name+": "+address+", "+phoneNum;
 	}
 
 }
