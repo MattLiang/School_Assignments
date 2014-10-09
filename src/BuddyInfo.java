@@ -3,6 +3,12 @@ public class BuddyInfo {
 	private String name;
 	private String address;
 	private String phoneNum;
+	
+	public BuddyInfo(String name, String address, String phoneNum){
+		this.address = address;
+		this.name = name;
+		this.phoneNum = phoneNum;
+	}
 
 	public String getName() {
 		return name;
