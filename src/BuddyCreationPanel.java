@@ -51,4 +51,11 @@ public class BuddyCreationPanel extends JPanel implements ActionListener{
 		tf_address.setText("");
 		tf_phone.setText("");
 	}
+	
+	public void editBuddy(BuddyInfo buddy){
+		abFrame.deleteBuddy(buddy);
+		tf_name.setText(buddy.getName());
+		tf_address.setText(buddy.getAddress());
+		tf_phone.setText(buddy.getPhoneNum());
+	}
 }

@@ -1,15 +1,17 @@
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
+import javax.swing.OverlayLayout;
 
 
 public class AddressBookFrame extends JFrame implements ActionListener{
@@ -26,17 +28,18 @@ public class AddressBookFrame extends JFrame implements ActionListener{
 	private JMenuItem add;
 	
 	//Variables
-	private AddressBook book;
 	private JTextArea mainDialog;
+	private DefaultListModel<BuddyInfo> addressBook;
 	
 	//Panel Variables
 	private BuddyCreationPanel creationPanel;
+	private AddressBookPanel addressBookPanel;
 	
 	public AddressBookFrame(){
 		super("Address Book");
 		
-		//Init
-		setLayout(new FlowLayout());
+		//Initialize
+		setLayout(new OverlayLayout(getContentPane()));
 		mainDialog = new JTextArea();
 		creationPanel = new BuddyCreationPanel(this);
 		
@@ -89,7 +92,10 @@ public class AddressBookFrame extends JFrame implements ActionListener{
 		if (MenuCommands.Create.toString() == command){
 			//Create Address Book
 			mainDialog.setText(" Address Book successfully created.");
-			book = new AddressBook();
+			addressBook = new DefaultListModel<BuddyInfo>();
+			addressBookPanel = new AddressBookPanel(this);
+			add(addressBookPanel);
+			addressBookPanel.setVisible(false);
 			
 			//Manage menu items
 			create.setEnabled(false);
@@ -98,52 +104,62 @@ public class AddressBookFrame extends JFrame implements ActionListener{
 			buddyInfo.setEnabled(true);
 			add.setEnabled(true);
 			
-			setCreationPanelFocus(false);
-			
 		} else if (MenuCommands.Display.toString() == command){
-			//Display Address Book
-			if (book.count()>0){
-				mainDialog.setText(book.toString());
-			} else {
-				mainDialog.setText(" No Entries :(");
-			}
-			
-			setCreationPanelFocus(false);
+			//Display Address Book Panel
+			addressBookPanel.setVisible(true);
+			creationPanel.setVisible(false);
+			mainDialog.setVisible(false);
 			
 		} else if (MenuCommands.Save.toString() == command){
 			//Save Address Book to txt
 			BufferedWriter out;
 			try {
 				out = new BufferedWriter(new FileWriter("AddressBook.txt"));
-				out.write(book.toString());
+				out.write(addressBook.toString());
 				out.close();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
 			mainDialog.setText("AddressBook.txt created");
-			setCreationPanelFocus(false);
+
+			addressBookPanel.setVisible(false);
+			creationPanel.setVisible(false);
+			mainDialog.setVisible(true);
+			
 		} else if (MenuCommands.Add.toString() == command){
 			//Add BuddyInfo to Address Book
 			creationPanel.refresh();
 			
 			//Manage menu items		
-			setCreationPanelFocus(true);
+			addressBookPanel.setVisible(false);
+			creationPanel.setVisible(true);
+			mainDialog.setVisible(false);
 		}
 	}
 	
 	public void save(BuddyInfo buddy){
-		book.addBuddy(buddy);
+		addressBook.addElement(buddy);
 		mainDialog.setText("BuddyInfo saved");
 		
-		setCreationPanelFocus(false);
+		addressBookPanel.setVisible(false);
+		creationPanel.setVisible(false);
+		mainDialog.setVisible(true);
 	}
 	
-	private void setCreationPanelFocus(boolean panelFocus){
-		//Toggle main dialog visibility
-		creationPanel.setVisible(panelFocus);
-		mainDialog.setVisible(!panelFocus);
-		mainDialog.validate();
+	public void deleteBuddy(BuddyInfo buddy){
+		addressBook.removeElement(buddy);
+	}
+	
+	public void editBuddyInfo(BuddyInfo buddy){
+		creationPanel.editBuddy(buddy);
+		
+		addressBookPanel.setVisible(false);
+		creationPanel.setVisible(true);
+		mainDialog.setVisible(false);
+	}
+	
+	public DefaultListModel<BuddyInfo> getAddressBook(){
+		return addressBook;
 	}
 }
