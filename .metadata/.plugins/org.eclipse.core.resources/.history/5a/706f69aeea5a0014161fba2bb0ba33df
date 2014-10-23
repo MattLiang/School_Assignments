@@ -1,0 +1,64 @@
+package UnitTest;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import Main.BuddyInfo;
+
+public class BuddyInfoTest {
+	private BuddyInfo buddy = null;
+	private String name = "Matt";
+	private String address = "88 Fake st.";
+	private String phoneNum = "613-123-4567";
+
+	@Before
+	public void setUp() throws Exception {
+		buddy = new BuddyInfo(name,address,phoneNum);
+	}
+
+	@Test
+	public void testBuddyInfo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetName() {
+		assertEquals("Buddy name is Matt","Matt",buddy.getName());
+	}
+
+	@Test
+	public void testSetName() {
+		buddy.setName("Charles");
+		assertEquals("Buddy name is Charles","Charles",buddy.getName());
+	}
+
+	@Test
+	public void testGetAddress() {
+		assertEquals("Buddy's address is 88 Fake st.","88 Fake st.",buddy.getAddress());
+	}
+
+	@Test
+	public void testSetAddress() {
+		buddy.setAddress("123 Concord ave.");
+		assertEquals("Buddy's address is 123 Concord ave.","123 Concord ave.",buddy.getAddress());
+	}
+
+	@Test
+	public void testGetPhoneNum() {
+		assertEquals("Buddy's phone# is 613-123-4567","613-123-4567",buddy.getPhoneNum());
+	}
+
+	@Test
+	public void testSetPhoneNum() {
+		buddy.setPhoneNum("123-456-7890");
+		assertEquals("Buddy's phone# is 123-456-7890","123-456-7890",buddy.getPhoneNum());
+	}
+
+	@Test
+	public void testToString() {
+		assertEquals("Info - Matt: 88 Fake st., 613-123-4567","Matt: 88 Fake st., 613-123-4567",buddy.toString());
+	}
+
+}

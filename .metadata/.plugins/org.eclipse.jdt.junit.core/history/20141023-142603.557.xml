@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestMovieList" project="JUnit" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="TestMovieList" time="0.0">
+    <testcase name="testSizeAfterAddingOne" classname="TestMovieList" time="0.0"/>
+    <testcase name="testSizeAfterAddingTwo" classname="TestMovieList" time="0.0"/>
+    <testcase name="testEmptyListSize" classname="TestMovieList" time="0.0"/>
+  </testsuite>
+</testrun>

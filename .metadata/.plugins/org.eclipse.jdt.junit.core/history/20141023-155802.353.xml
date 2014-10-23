@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="AddressBookTest" project="AddressBook" tests="5" started="5" failures="0" errors="0" ignored="0">
+  <testsuite name="UnitTest.AddressBookTest" time="0.0">
+    <testcase name="testEmptyAddressBook" classname="UnitTest.AddressBookTest" time="0.0"/>
+    <testcase name="testClear" classname="UnitTest.AddressBookTest" time="0.0"/>
+    <testcase name="testToString" classname="UnitTest.AddressBookTest" time="0.0"/>
+    <testcase name="testRemoveBuddy" classname="UnitTest.AddressBookTest" time="0.0"/>
+    <testcase name="testAddBuddy" classname="UnitTest.AddressBookTest" time="0.0"/>
+  </testsuite>
+</testrun>

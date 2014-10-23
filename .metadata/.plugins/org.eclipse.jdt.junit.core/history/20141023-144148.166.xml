@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="AllTests" project="JUnit" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="Test for com.saorsa.nowplaying.tests" time="0.0">
+    <testsuite name="TestMovieListWithEmptyList" time="0.0">
+      <testcase name="testSize" classname="TestMovieListWithEmptyList" time="0.0"/>
+    </testsuite>
+    <testsuite name="TestMovieListWithOneMovie" time="0.0">
+      <testcase name="testSize" classname="TestMovieListWithOneMovie" time="0.0"/>
+    </testsuite>
+    <testsuite name="TestMovieListWithTwoMovies" time="0.0">
+      <testcase name="testSize" classname="TestMovieListWithTwoMovies" time="0.0"/>
+      <testcase name="testContents" classname="TestMovieListWithTwoMovies" time="0.0"/>
+    </testsuite>
+  </testsuite>
+</testrun>

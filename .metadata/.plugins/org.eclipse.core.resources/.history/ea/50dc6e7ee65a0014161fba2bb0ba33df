@@ -1,0 +1,23 @@
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Before;
+import org.junit.Test;
+
+
+public class TestMovieListWithOneMovie{
+	private MovieList movieList = null;
+	private Movie starWars = null;
+
+	@Before
+	public void setUp() {
+		movieList = new MovieList();
+		starWars = new Movie("Star Wars");
+	}
+
+	@Test
+	public void testSize() {
+		movieList.add(starWars);
+		assertEquals("Size of empty movie list should be 1.", 1,
+				movieList.size());
+	}
+}

@@ -1,0 +1,65 @@
+package Main;
+
+public class BuddyInfo {
+	private String name;
+	private String address;
+	private String phoneNum;
+	private int age;
+	
+	public BuddyInfo(String name, String address, String phoneNum){
+		this.address = address;
+		this.name = name;
+		this.phoneNum = phoneNum;
+	}
+	
+	public BuddyInfo(BuddyInfo buddy){
+		this.address = buddy.getAddress();
+		this.name = buddy.getName();
+		this.phoneNum = buddy.getPhoneNum();
+	}
+	
+	public String getGreeting(){
+		return name + ": Hello!";
+	}
+
+	public void setAge(int age){
+		this.age = age;
+	}
+	
+	public int getAge(){
+		return age;
+	}
+	
+	public boolean isOver18(){
+		return age>18;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+	
+	public String toString(){
+		return name+": "+address+", "+phoneNum;
+	}
+
+}

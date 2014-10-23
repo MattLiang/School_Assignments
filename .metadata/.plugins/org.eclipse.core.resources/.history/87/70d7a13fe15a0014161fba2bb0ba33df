@@ -1,0 +1,9 @@
+public class MovieList {
+	public int size() {
+		return 0;
+	}
+	
+	public void add(Movie aMovie){
+		
+	}
+}

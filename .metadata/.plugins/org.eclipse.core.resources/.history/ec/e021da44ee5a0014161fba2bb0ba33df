@@ -1,0 +1,47 @@
+package UnitTest;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import Main.AddressBook;
+import Main.BuddyInfo;
+
+public class AddressBookTest {
+	private AddressBook book = null;
+	private BuddyInfo charles = new BuddyInfo("c","12F","000");
+
+	@Before
+	public void setUp() throws Exception {
+		book = new AddressBook();
+	}
+
+	@Test
+	public void testAddBuddy() {
+		book.addBuddy(charles);
+		assertEquals("Address has added one more",1,book.size());
+	}
+
+	@Test
+	public void testRemoveBuddy() {
+		book.addBuddy(charles);
+		assertEquals("Address book is empty",0,book.size());
+	}
+
+	@Test
+	public void testToString() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testEmptyAddressBook() {
+		assertEquals("Address book is empty",0,book.size());
+	}
+
+	@Test
+	public void testClear() {
+		fail("Not yet implemented");
+	}
+
+}

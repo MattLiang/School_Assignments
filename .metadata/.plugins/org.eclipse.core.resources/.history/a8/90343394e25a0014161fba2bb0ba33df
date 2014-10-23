@@ -1,0 +1,18 @@
+public class MovieList {
+	private Collection movies = new ArrayList();
+
+	private int numberOfMovies = 0;
+
+	public int size() {
+		return numberOfMovies;
+	}
+
+	public void add(Movie aMovie) {
+		numberOfMovies++;
+	}
+
+	public boolean contains(Movie aMovie) {
+		return false;
+	}
+
+}

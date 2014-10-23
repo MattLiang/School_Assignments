@@ -1,0 +1,23 @@
+import junit.framework.TestCase;
+
+
+public class TestMovieListWithOneMovie extends TestCase{
+	private MovieList movieList = null;
+	private Movie starWars = null;
+
+	public void setUp() {
+		movieList = new MovieList();
+		starWars = new Movie("Star Wars");
+	}
+
+	public void testSize() {
+		movieList.add(starWars);
+		assertEquals("Size of empty movie list should be 1.", 1,
+				movieList.size());
+	}
+
+	public static void main(String[] args) {
+		junit.textui.TestRunner.run(TestMovieListWithOneMovie.class);
+	}
+
+}

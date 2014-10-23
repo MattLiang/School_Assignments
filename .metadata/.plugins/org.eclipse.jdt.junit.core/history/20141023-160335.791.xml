@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="AllTests (1)" project="AddressBook" tests="17" started="17" failures="0" errors="0" ignored="0">
+  <testsuite name="UnitTest.AllTests" time="0.001">
+    <testsuite name="UnitTest.BuddyInfoTest" time="0.0">
+      <testcase name="testToString" classname="UnitTest.BuddyInfoTest" time="0.0"/>
+      <testcase name="testGetAddress" classname="UnitTest.BuddyInfoTest" time="0.0"/>
+      <testcase name="testGetName" classname="UnitTest.BuddyInfoTest" time="0.0"/>
+      <testcase name="testBuddyInfoCopy" classname="UnitTest.BuddyInfoTest" time="0.0"/>
+      <testcase name="testSetPhoneNum" classname="UnitTest.BuddyInfoTest" time="0.0"/>
+      <testcase name="testGetPhoneNum" classname="UnitTest.BuddyInfoTest" time="0.0"/>
+      <testcase name="testIsOver18" classname="UnitTest.BuddyInfoTest" time="0.0"/>
+      <testcase name="testSetAddress" classname="UnitTest.BuddyInfoTest" time="0.0"/>
+      <testcase name="testGetAge" classname="UnitTest.BuddyInfoTest" time="0.0"/>
+      <testcase name="testSetName" classname="UnitTest.BuddyInfoTest" time="0.0"/>
+      <testcase name="testGetGreeting" classname="UnitTest.BuddyInfoTest" time="0.0"/>
+      <testcase name="testSetAge" classname="UnitTest.BuddyInfoTest" time="0.0"/>
+    </testsuite>
+    <testsuite name="UnitTest.AddressBookTest" time="0.001">
+      <testcase name="testEmptyAddressBook" classname="UnitTest.AddressBookTest" time="0.0"/>
+      <testcase name="testClear" classname="UnitTest.AddressBookTest" time="0.0"/>
+      <testcase name="testToString" classname="UnitTest.AddressBookTest" time="0.0"/>
+      <testcase name="testRemoveBuddy" classname="UnitTest.AddressBookTest" time="0.001"/>
+      <testcase name="testAddBuddy" classname="UnitTest.AddressBookTest" time="0.0"/>
+    </testsuite>
+  </testsuite>
+</testrun>
