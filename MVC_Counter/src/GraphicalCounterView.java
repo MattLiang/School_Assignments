@@ -3,7 +3,11 @@ import java.util.Observer;
 
 import javax.swing.JTextField;
 
-
+/**
+ * View
+ * @author matthewliang
+ *
+ */
 public class GraphicalCounterView extends JTextField implements Observer{
 	public GraphicalCounterView(String str){
 		super(str);
