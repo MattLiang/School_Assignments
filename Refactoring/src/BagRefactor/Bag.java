@@ -1,3 +1,4 @@
+package BagRefactor;
 
 public interface Bag {
 	void set(Object msg);

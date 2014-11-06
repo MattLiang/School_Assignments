@@ -1,15 +1,12 @@
+package BagRefactor;
 
 final class BagImpl implements Bag {
-	/**
-	 * 
-	 */
-	private final BagExample example;
+
 
 	/**
 	 * @param bagExample
 	 */
-	BagImpl(BagExample bagExample) {
-		example = bagExample;
+	BagImpl() {
 	}
 
 	Object o;

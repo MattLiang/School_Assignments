@@ -2,12 +2,12 @@ package Main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
-import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -17,20 +17,21 @@ import javax.swing.OverlayLayout;
 
 public class AddressBookFrame extends JFrame implements ActionListener{
 	//Class Variables
-	public enum MenuCommands {Create,Save,Display,Add};
+	public enum MenuCommands {Create,Save,Display,Add,Import};
 	
 	//Menu Bar variables
 	private JMenuBar menuBar;
 	private JMenu addrbook;
 	private JMenu buddyInfo;
 	private JMenuItem create;
+	private JMenuItem mi_import;
 	private JMenuItem save;
 	private JMenuItem display;
 	private JMenuItem add;
 	
 	//Variables
 	private JTextArea mainDialog;
-	private DefaultListModel<BuddyInfo> addressBook;
+	private AddressBook addressBook;
 	
 	//Panel Variables
 	private BuddyCreationPanel creationPanel;
@@ -51,6 +52,8 @@ public class AddressBookFrame extends JFrame implements ActionListener{
 		
 		create = new JMenuItem(MenuCommands.Create.toString());
 		create.addActionListener(this);
+		mi_import = new JMenuItem(MenuCommands.Import.toString());
+		mi_import.addActionListener(this);
 		save = new JMenuItem(MenuCommands.Save.toString());
 		save.setEnabled(false);
 		save.addActionListener(this);
@@ -61,6 +64,7 @@ public class AddressBookFrame extends JFrame implements ActionListener{
 		add.addActionListener(this);
 		
 		addrbook.add(create);
+		addrbook.add(mi_import);
 		addrbook.add(save);
 		addrbook.add(display);
 		
@@ -93,13 +97,14 @@ public class AddressBookFrame extends JFrame implements ActionListener{
 		if (MenuCommands.Create.toString() == command){
 			//Create Address Book
 			mainDialog.setText(" Address Book successfully created.");
-			addressBook = new DefaultListModel<BuddyInfo>();
+			addressBook = new AddressBook();
 			addressBookPanel = new AddressBookPanel(this);
 			add(addressBookPanel);
 			addressBookPanel.setVisible(false);
 			
 			//Manage menu items
 			create.setEnabled(false);
+			mi_import.setEnabled(true);
 			save.setEnabled(true);
 			display.setEnabled(true);
 			buddyInfo.setEnabled(true);
@@ -113,13 +118,21 @@ public class AddressBookFrame extends JFrame implements ActionListener{
 			
 		} else if (MenuCommands.Save.toString() == command){
 			//Save Address Book to txt
-			BufferedWriter out;
+			System.out.println("in");
+			System.out.println(addressBook.toString());
+			BufferedWriter out = null;
 			try {
-				out = new BufferedWriter(new FileWriter("AddressBook.txt"));
+				out = new BufferedWriter(new FileWriter("./AddressBook.txt"));
 				out.write(addressBook.toString());
-				out.close();
 			} catch (IOException e1) {
 				e1.printStackTrace();
+			} finally {
+				try {
+					out.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			
 			mainDialog.setText("AddressBook.txt created");
@@ -136,6 +149,16 @@ public class AddressBookFrame extends JFrame implements ActionListener{
 			addressBookPanel.setVisible(false);
 			creationPanel.setVisible(true);
 			mainDialog.setVisible(false);
+		}
+		
+		else if (MenuCommands.Import.toString() == command){
+			File bookFile = new File("./AddressBook.txt");
+			addressBook.importAddressBook(bookFile);
+			mainDialog.setText("Import Successful");
+
+			addressBookPanel.setVisible(false);
+			creationPanel.setVisible(false);
+			mainDialog.setVisible(true);
 		}
 	}
 	
@@ -160,7 +183,7 @@ public class AddressBookFrame extends JFrame implements ActionListener{
 		mainDialog.setVisible(false);
 	}
 	
-	public DefaultListModel<BuddyInfo> getAddressBook(){
+	public AddressBook getAddressBook(){
 		return addressBook;
 	}
 }

@@ -1,5 +1,7 @@
 package Main;
 
+import java.util.Scanner;
+
 public class BuddyInfo {
 	private String name;
 	private String address;
@@ -59,7 +61,27 @@ public class BuddyInfo {
 	}
 	
 	public String toString(){
-		return name+": "+address+", "+phoneNum;
+		return name+"-"+address+"-"+phoneNum;
 	}
-
+	
+	public static BuddyInfo importBuddy(String info){
+		Scanner s = null;
+		BuddyInfo buddy = null;
+		
+		try {
+			s = new Scanner(info);
+			s.useDelimiter("-");
+			String str1 = s.next();
+			String str2 = s.next();
+			String str3 = s.next();
+			buddy = new BuddyInfo(str1,str2,str3);
+			System.out.println("Buddy:" + buddy.toString());
+		} catch (Exception e){
+			
+		} finally {
+			s.close();
+		}
+		
+		return buddy;
+	}
 }
