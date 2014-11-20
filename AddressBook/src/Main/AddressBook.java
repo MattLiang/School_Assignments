@@ -1,6 +1,7 @@
 package Main;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,7 +9,7 @@ import java.util.Scanner;
 import javax.swing.DefaultListModel;
 
 
-public class AddressBook extends DefaultListModel<BuddyInfo>{
+public class AddressBook extends DefaultListModel<BuddyInfo> implements Serializable{
 	
 	public AddressBook(){
 	}
@@ -38,4 +39,10 @@ public class AddressBook extends DefaultListModel<BuddyInfo>{
 			s_book.close();
 		}
 	} 
+	
+	public void export(){
+		//open stream
+		//export class
+		//export subclasses
+	}
 }
