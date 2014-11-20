@@ -1,11 +1,15 @@
 package UnitTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -60,30 +64,33 @@ public class AddressBookTest {
 	
 	
 	@Test
-	public void testImport(){
+	public void testImportExportTextFile(){
+		String filename = "./AddressBook.txt";
 		String addr = "m-12E-123\nc-12F-000\n";
 		book.addElement(matt);
 		book.addElement(charles);
 		
 		//export
-		BufferedWriter out = null;
-		try {
-			out = new BufferedWriter(new FileWriter("./AddressBook.txt"));
-			out.write(book.toString());
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} finally {
-			try {
-				out.close();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
+		book.exportToTextFile(filename);
 		
 		//import
-		File bookFile = new File("./AddressBook.txt");
-		book.importAddressBook(bookFile);
+		book.importFromTextFile(filename);
+		
+		assertEquals("Imported address book contains matt and charles info",addr,book.toString());
+	}
+	
+	@Test
+	public void testImportExportFile(){
+		String filename = "./AddressBook.tmp";
+		String addr = "m-12E-123\nc-12F-000\n";
+		book.addElement(matt);
+		book.addElement(charles);
+		
+		//export
+		book.exportToFile(filename);
+		
+		//import
+		book = book.importFromFile(filename);
 		
 		assertEquals("Imported address book contains matt and charles info",addr,book.toString());
 	}

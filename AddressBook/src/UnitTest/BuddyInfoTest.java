@@ -2,9 +2,16 @@ package UnitTest;
 
 import static org.junit.Assert.*;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import Main.AddressBook;
 import Main.BuddyInfo;
 
 public class BuddyInfoTest {
@@ -53,7 +60,7 @@ public class BuddyInfoTest {
 
 	@Test
 	public void testToString() {
-		assertEquals("Info - Matt: 88 Fake st., 613-123-4567","Matt: 88 Fake st., 613-123-4567",buddy.toString());
+		assertEquals("Info - Matt: 88 Fake st., 613-123-4567","Matt-88 Fake st.-613-123-4567",buddy.toString());
 	}
 
 	@Test
@@ -85,5 +92,49 @@ public class BuddyInfoTest {
 	@Test
 	public void testIsOver18(){
 		assertTrue("Is under 18",!buddy.isOver18());
+	}
+	
+	@Test
+	public void testSerializable(){
+		
+		//export
+		FileOutputStream ostream = null;
+		ObjectOutputStream p = null;
+		try {
+			ostream = new FileOutputStream("./Buddy.tmp");
+			p = new ObjectOutputStream(ostream);
+			p.writeObject(buddy);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} finally {
+			try {
+				p.close();
+				ostream.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+		//Import
+		FileInputStream istream = null;
+		ObjectInputStream input = null;
+		try {
+			istream = new FileInputStream("./Buddy.tmp");
+			input = new ObjectInputStream(istream);
+			buddy = (BuddyInfo)(input.readObject());
+		} catch (IOException | ClassNotFoundException e1) {
+			e1.printStackTrace();
+		} finally {
+			try {
+				input.close();
+				istream.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+		assertEquals("Info - Matt: 88 Fake st., 613-123-4567","Matt-88 Fake st.-613-123-4567",buddy.toString());
 	}
 }

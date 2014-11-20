@@ -120,20 +120,7 @@ public class AddressBookFrame extends JFrame implements ActionListener{
 			//Save Address Book to txt
 			System.out.println("in");
 			System.out.println(addressBook.toString());
-			BufferedWriter out = null;
-			try {
-				out = new BufferedWriter(new FileWriter("./AddressBook.txt"));
-				out.write(addressBook.toString());
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} finally {
-				try {
-					out.close();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
+			addressBook.exportToFile("./AddressBook.tmp");
 			
 			mainDialog.setText("AddressBook.txt created");
 
@@ -152,8 +139,7 @@ public class AddressBookFrame extends JFrame implements ActionListener{
 		}
 		
 		else if (MenuCommands.Import.toString() == command){
-			File bookFile = new File("./AddressBook.txt");
-			addressBook.importAddressBook(bookFile);
+			addressBook = addressBook.importFromFile("./AddressBook.tmp");
 			mainDialog.setText("Import Successful");
 
 			addressBookPanel.setVisible(false);
