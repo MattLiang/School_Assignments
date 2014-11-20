@@ -91,7 +91,7 @@ public class AddressBook extends DefaultListModel<BuddyInfo> implements Serializ
 		FileInputStream istream = null;
 		ObjectInputStream input = null;
 		try {
-			istream = new FileInputStream("./AddressBook.tmp");
+			istream = new FileInputStream(filename);
 			input = new ObjectInputStream(istream);
 			importedBook = (AddressBook)(input.readObject());
 		} catch (IOException | ClassNotFoundException e1) {
