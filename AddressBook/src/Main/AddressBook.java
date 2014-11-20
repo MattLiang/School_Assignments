@@ -9,18 +9,8 @@ import javax.swing.DefaultListModel;
 
 
 public class AddressBook extends DefaultListModel<BuddyInfo>{
-	private List<BuddyInfo> book;
 	
 	public AddressBook(){
-		book = new ArrayList<BuddyInfo>();
-	}
-	
-	public void addBuddy(BuddyInfo bud){
-		book.add(bud);
-	}
-	
-	public void removeBuddy(BuddyInfo bud){
-		book.remove(bud);
 	}
 	
 	public String toString(){
@@ -48,8 +38,4 @@ public class AddressBook extends DefaultListModel<BuddyInfo>{
 			s_book.close();
 		}
 	} 
-	
-	public int size(){
-		return book.size();
-	}
 }
