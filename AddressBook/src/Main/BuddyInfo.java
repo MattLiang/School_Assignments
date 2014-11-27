@@ -15,6 +15,9 @@ public class BuddyInfo implements Serializable {
 		this.phoneNum = phoneNum;
 	}
 	
+	public BuddyInfo(){
+	}
+	
 	public BuddyInfo(BuddyInfo buddy){
 		this.address = buddy.getAddress();
 		this.name = buddy.getName();
@@ -84,5 +87,15 @@ public class BuddyInfo implements Serializable {
 		}
 		
 		return buddy;
+	}
+	
+	public String toXml(){
+		StringBuilder xml = new StringBuilder();
+		xml.append("<buddy>\n");
+		xml.append("\t<name>"+name+"</name>\n");
+		xml.append("\t<address>"+address+"</address>\n");
+		xml.append("\t<phone>"+phoneNum+"</phone>\n");
+		xml.append("</buddy>\n");
+		return xml.toString();
 	}
 }

@@ -1,0 +1,12 @@
+<addressbook>
+<buddy>
+	<name>asd</name>
+	<address>12</address>
+	<phone>asd</phone>
+</buddy>
+<buddy>
+	<name>asdf</name>
+	<address>23</address>
+	<phone>asd</phone>
+</buddy>
+</addressbook>

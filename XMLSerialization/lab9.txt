@@ -1,0 +1,38 @@
+Lab 9 Questions:
+1) 
+START: tutorial
+CHARS: 
+	
+START: number
+CHARS: 3
+END: number
+CHARS: 
+	
+START: ta
+CHARS: Michael
+END: ta
+CHARS: 
+
+END: tutorial
+
+2)
+startElement() -> whenever <node> is read
+endElement() -> whenever </node> is read
+characters() -> whatever is between <node></node>
+
+3)
+Root: tutorial
+Child: #text ==> 
+	
+Child: number ==> 3
+Child: #text ==> 
+	
+Child: ta ==> Michael
+Child: #text ==> 
+
+4)
+Doc object contains a tree of all the nodes, representing the xml
+
+5)
+SAX: read the xml line by line and perform a method when nodes are reached
+DOM: Read through entire xml first, then create a Dom object to query after
